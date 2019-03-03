@@ -1,10 +1,9 @@
-import json
-import time
-import traceback
 
-from flask import current_app, g, request
-from flask_restful import Resource, fields, marshal_with
-from flask_restful.reqparse import RequestParser
+import time
+
+from flask import current_app, g
+from flask_restful import Resource
+
 from iris import log_util
 
 

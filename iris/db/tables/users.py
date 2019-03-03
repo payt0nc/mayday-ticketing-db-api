@@ -1,8 +1,9 @@
 import time
 
-from iris.db.tables import BaseModel
 from sqlalchemy import BIGINT, BOOLEAN, INT, Column, String, Table
 from sqlalchemy.sql.expression import select, text
+
+from iris.db.tables import BaseModel
 
 
 class Users(BaseModel):

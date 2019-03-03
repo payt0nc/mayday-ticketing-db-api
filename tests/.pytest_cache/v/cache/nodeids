@@ -1,0 +1,14 @@
+[
+  "test_auth.py::TestApp::test_auth",
+  "test_db_events.py::TestCase::test_get_events",
+  "test_db_tickets.py::TestCase::test_get_tickets_by_ticket_id",
+  "test_db_tickets.py::TestCase::test_get_tickets_by_user_id",
+  "test_db_users.py::TestCase::test_ban_user",
+  "test_db_users.py::TestCase::test_get_auth",
+  "test_db_users.py::TestCase::test_get_user_profile",
+  "test_health.py::TestApp::test_health",
+  "test_my_tickets.py::TestApp::test_create_ticket",
+  "test_my_tickets.py::TestApp::test_get_my_ticket",
+  "test_my_tickets.py::TestApp::test_update_my_ticket",
+  "test_tickets.py::TestApp::test_get_ticket_by_conditions"
+]

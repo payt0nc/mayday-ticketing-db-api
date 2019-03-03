@@ -14,6 +14,6 @@ class TestApp:
 
         # test match passwd
         res = app.test_client().get(url, content_type='application/json')
-        rtn = json.loads(res.data, encoding='UTF-8')
-        assert 200 == res.status_code
-        assert 'OK' == rtn['info']
+        result = json.loads(res.data, encoding='UTF-8')
+        assert res.status_code == 200
+        assert result['info'] == 'OK'

@@ -1,9 +1,10 @@
 import time
 
-from iris.db import sqls as SQL
-from iris.db.tables import BaseModel, MagicJSON
 from sqlalchemy import BIGINT, BOOLEAN, INT, SMALLINT, Column, String, Table
 from sqlalchemy.sql.expression import and_, desc, select, text
+
+from iris.db import sqls as SQL
+from iris.db.tables import BaseModel, MagicJSON
 
 THIS_YEAR = 2019
 

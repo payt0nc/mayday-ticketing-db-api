@@ -2,7 +2,6 @@ import json
 
 import pytest
 
-import flask_restful
 from flask import url_for
 
 PROFILE = dict(
@@ -31,6 +30,6 @@ class TestApp:
             content_type='application/json'
         )
 
-        assert 200 == res.status_code
+        assert res.status_code == 200
         assert res.json['is_banned'] is False
         assert res.json['is_admin'] is False

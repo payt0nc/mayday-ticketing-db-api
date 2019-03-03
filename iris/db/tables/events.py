@@ -1,6 +1,7 @@
-from iris.db.tables import BaseModel
 from sqlalchemy import BOOLEAN, INT, Column, String, Table
 from sqlalchemy.sql.expression import desc, select
+
+from iris.db.tables import BaseModel
 
 
 class Events(BaseModel):

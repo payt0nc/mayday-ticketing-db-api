@@ -1,5 +1,4 @@
 import unittest
-import json
 
 import pytest
 import sqlalchemy
@@ -32,16 +31,16 @@ class TestCase(unittest.TestCase):
     def test_get_auth(self):
         result = self.db.get_auth(USER)
         assert result
-        assert result['is_banned'] == False
-        assert result['is_admin'] == False
+        assert result['is_banned'] is False
+        assert result['is_admin'] is False
 
     def test_ban_user(self):
         self.db.get_auth(USER)
         result = self.db.ban_user(USER)
 
         assert result
-        assert result['is_banned'] == True
-        assert result['is_admin'] == False
+        assert result['is_banned'] is True
+        assert result['is_admin'] is False
 
     def test_get_user_profile(self):
         self.db.get_auth(USER)

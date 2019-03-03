@@ -1,5 +1,3 @@
-import json
-
 import pytest
 
 from flask import url_for
@@ -52,9 +50,9 @@ class TestApp:
         # search by status
         with app.app_context():
             url = url_for('controllers.tickets', status_id=1)
-        with app.test_client() as c:
-            res = c.get(url, content_type='application/json')
-            assert 200 == res.status_code
+        with app.test_client() as client:
+            res = client.get(url, content_type='application/json')
+            assert res.status_code == 200
             assert len(res.json) == 1
             ticket = res.json[0]
             assert ticket['status_id'] == 1
@@ -62,9 +60,9 @@ class TestApp:
         # search by category_id
         with app.app_context():
             url = url_for('controllers.tickets', category_id=1)
-        with app.test_client() as c:
-            res = c.get(url, content_type='application/json')
-            assert 200 == res.status_code
+        with app.test_client() as client:
+            res = client.get(url, content_type='application/json')
+            assert res.status_code == 200
             assert len(res.json) == 1
             ticket = res.json[0]
             assert ticket['category_id'] == 1
@@ -72,9 +70,9 @@ class TestApp:
         # search by price_id
         with app.app_context():
             url = url_for('controllers.tickets', price_id=1)
-        with app.test_client() as c:
-            res = c.get(url, content_type='application/json')
-            assert 200 == res.status_code
+        with app.test_client() as client:
+            res = client.get(url, content_type='application/json')
+            assert res.status_code == 200
             assert len(res.json) == 1
             ticket = res.json[0]
             assert ticket['price_id'] == 1
@@ -82,18 +80,18 @@ class TestApp:
         # search by date
         with app.app_context():
             url = url_for('controllers.tickets', date=501)
-        with app.test_client() as c:
-            res = c.get(url, content_type='application/json')
-            assert 200 == res.status_code
+        with app.test_client() as client:
+            res = client.get(url, content_type='application/json')
+            assert res.status_code == 200
             assert len(res.json) == 1
             ticket = res.json[0]
             assert ticket['date'] == 501
 
         with app.app_context():
             url = url_for('controllers.tickets', date=[501, 502])
-        with app.test_client() as c:
-            res = c.get(url, content_type='application/json')
-            assert 200 == res.status_code
+        with app.test_client() as client:
+            res = client.get(url, content_type='application/json')
+            assert res.status_code == 200
             assert len(res.json) == 1
             ticket = res.json[0]
             assert ticket['date'] == 501
@@ -101,9 +99,9 @@ class TestApp:
         # search by quantity
         with app.app_context():
             url = url_for('controllers.tickets', quantity=1)
-        with app.test_client() as c:
-            res = c.get(url, content_type='application/json')
-            assert 200 == res.status_code
+        with app.test_client() as client:
+            res = client.get(url, content_type='application/json')
+            assert res.status_code == 200
             assert len(res.json) == 1
             ticket = res.json[0]
             assert ticket['quantity'] == 1
@@ -111,9 +109,9 @@ class TestApp:
         # search by max conditions
         with app.app_context():
             url = url_for('controllers.tickets', price_id=1, category_id=1, status_id=1, date=501, quantity=1)
-        with app.test_client() as c:
-            res = c.get(url, content_type='application/json')
-            assert 200 == res.status_code
+        with app.test_client() as client:
+            res = client.get(url, content_type='application/json')
+            assert res.status_code == 200
             assert len(res.json) == 1
             ticket = res.json[0]
             assert ticket['price_id'] == 1

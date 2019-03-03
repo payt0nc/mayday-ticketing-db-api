@@ -4,13 +4,13 @@ import os
 import sqlalchemy
 from fakeredis import FakeRedis
 from flask import Flask
-from iris import controller
+from sqlalchemy.schema import MetaData
 
+from iris import controller
 from iris.db import tables
 from iris.db.tables.events import Events
 from iris.db.tables.tickets import Tickets
 from iris.db.tables.users import Users
-from sqlalchemy.schema import MetaData
 
 logger = logging.getLogger()
 

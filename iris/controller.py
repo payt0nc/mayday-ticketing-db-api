@@ -4,11 +4,11 @@ from flask import Blueprint, g
 from flask_restful import Api
 
 from iris.endpoints.auth import Auth
-from iris.endpoints.health import Health
-from iris.endpoints.tickets import MyTickets, Tickets, Ticket
-from iris.endpoints.stats import Stats
 from iris.endpoints.events import Events
+from iris.endpoints.health import Health
 from iris.endpoints.matching import Matching
+from iris.endpoints.stats import Stats
+from iris.endpoints.tickets import MyTickets, Ticket, Tickets
 
 controllers = Blueprint('controllers', __name__)
 api = Api(controllers)

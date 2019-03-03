@@ -1,0 +1,16 @@
+version: '3'
+services:
+  iris:
+    build: .
+    environment:
+      - "STAGE=PRODUCTION"
+    env_file: env.list
+    restart: always
+    ports: 
+      - "8081:10000"
+    networks: 
+      - database
+
+networks:
+  database:
+    external: false

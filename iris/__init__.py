@@ -20,15 +20,15 @@ class Config:
     def __init__(self):
         # DB
         self.db_host = os.environ.get('DB_HOST', 'localhost')
-        self.db_port = int(os.environ.get('DB_PORT', 3306))
+        self.db_port = int(os.environ.get('DB_PORT')) if os.environ.get('DB_PORT') else 3306
         self.db_username = os.environ.get('DB_USERNAME')
         self.db_passwd = os.environ.get('DB_PASSWD')
         self.db_name = os.environ.get('DB_NAME')
 
         # Redis
         self.redis_host = os.environ.get('REDIS_HOST', 'localhost')
-        self.redis_port = int(os.environ.get('REDIS_PORT', 6627))
-        self.redis_db = int(os.environ.get('REDIS_DB', 0))
+        self.redis_port = int(os.environ.get('REDIS_PORT')) if os.environ.get('REDIS_PORT') else 6627
+        self.redis_db = int(os.environ.get('REDIS_DB')) if os.environ.get('REDIS_DB') else 0
 
     @property
     def db_config(self) -> dict:
@@ -49,30 +49,28 @@ class Config:
         )
 
 
-def get_project_dir_path():
-    return os.path.abspath(os.getcwd())
+class NoStageStated(Exception):
+    pass
 
 
 def init_app():
     app = Flask(__name__)
     app.register_blueprint(controller.controllers)
     config = Config()
-    stage = os.environ.get('stage', 'TEST').upper()
+    stage = os.environ.get('STAGE', 'TEST').upper()
 
     # set logging
     if stage in ['TEST', 'STAGING']:
         logger.setLevel(logging.DEBUG)
 
     app.config['app.logger'] = logger
-
-    project_path = get_project_dir_path()
-    config_path = os.path.join(project_path, 'config.ini')
-
     if stage == 'TEST':
         engine = sqlalchemy.create_engine('sqlite://')
         metadata = MetaData(bind=engine)
-    else:
+    elif stage in {'STAGING', 'PRODUCTION'}:
         engine, metadata = tables.create_engine_and_metadata(config.db_config)
+    else:
+        raise NoStageStated
 
     # init db model
     app.config['app.db.events'] = Events(engine, metadata)
